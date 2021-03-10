@@ -218,8 +218,9 @@ public class CheckTheMainMenuTest extends TestBase {
         step("Go and assert Telegram", () -> {
             $x("//a[text()='Чат-бот в Telegram']").click();
             switchTo().window(1);
-            $(".tgme_action_button").click();
             Selenide.switchTo().alert().accept();
+//            $(".tgme_action_button").click();
+
         });
     }
 
