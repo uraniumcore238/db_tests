@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.conditions.Visible;
 import com.codeborne.selenide.impl.WebElementSelector;
 import com.codeborne.selenide.impl.WebElementsCollectionWrapper;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Iterator;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -122,7 +124,7 @@ public class CheckTheMainMenuTest extends TestBase {
         });
 
         step("Check is there any article on the HabraHabr", () -> {
-            $x("//a[@href='https://habr.com/en/company/dbtc/blog/']/h3/span");
+            $x("//a[@href='https://habr.com/en/company/dbtc/blog/']/h3/span").should(visible);
         });
 
     }
