@@ -20,10 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CheckTheMainMenuTest extends TestBase {
 
-    @BeforeAll
-    static void setup() {
-        Configuration.startMaximized = true;
-    }
 
     @Test
     void headerValidationTest() {
