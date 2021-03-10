@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.conditions.Visible;
 import com.codeborne.selenide.impl.WebElementSelector;
 import com.codeborne.selenide.impl.WebElementsCollectionWrapper;
@@ -126,7 +127,101 @@ public class CheckTheMainMenuTest extends TestBase {
         step("Check is there any article on the HabraHabr", () -> {
             $x("//a[@href='https://habr.com/en/company/dbtc/blog/']/h3/span").should(visible);
         });
-
     }
+
+        @Test
+        void facebookLinkTest() {
+            String url = "https://www.db.com/russia/index_ru.htm";
+
+            step("Open main URL", () -> {
+                open(url);
+            });
+
+            step("Go to the technology center", () -> {
+                $x("//a[@id='pi_main_2561']").click();
+            });
+
+            step("Assert the technology center name", () -> {
+                $x("//h1").shouldHave(text("Технологический Центр"));
+            });
+
+            step("Go and assert Facebook link", () -> {
+                $x("//a[text()='Facebook']").click();
+                switchTo().window(1);
+                $x("//a[@class='_64-f']/span").shouldHave(text("Технологический Центр Дойче Банка"));
+            });
+        }
+
+
+    @Test
+    void vkontakteLinkTest() {
+        String url = "https://www.db.com/russia/index_ru.htm";
+
+        step("Open main URL", () -> {
+            open(url);
+        });
+
+        step("Go to the technology center", () -> {
+            $x("//a[@id='pi_main_2561']").click();
+        });
+
+        step("Assert the technology center name", () -> {
+            $x("//h1").shouldHave(text("Технологический Центр"));
+        });
+
+        step("Go and assert Vkontakte", () -> {
+            $x("//a[text()='Vkontakte']").click();
+            switchTo().window(1);
+            $x("//h1").shouldHave(text("Технологический Центр Дойче Банка"));
+        });
+    }
+
+    @Test
+    void youtubeLinkTest() {
+        String url = "https://www.db.com/russia/index_ru.htm";
+
+        step("Open main URL", () -> {
+            open(url);
+        });
+
+        step("Go to the technology center", () -> {
+            $x("//a[@id='pi_main_2561']").click();
+        });
+
+        step("Assert the technology center name", () -> {
+            $x("//h1").shouldHave(text("Технологический Центр"));
+        });
+
+        step("Go and assert Youtube", () -> {
+                $x("//a[text()='Youtube']").click();
+                switchTo().window(1);
+                $("#inner-header-container #text-container .ytd-channel-name").shouldHave(text("Технологический Центр Дойче Банка"));
+            });
+    }
+
+    @Test
+    void telegramLinkTest() {
+        String url = "https://www.db.com/russia/index_ru.htm";
+
+        step("Open main URL", () -> {
+            open(url);
+        });
+
+        step("Go to the technology center", () -> {
+            $x("//a[@id='pi_main_2561']").click();
+        });
+
+        step("Assert the technology center name", () -> {
+            $x("//h1").shouldHave(text("Технологический Центр"));
+        });
+
+        step("Go and assert Telegram", () -> {
+            $x("//a[text()='Чат-бот в Telegram']").click();
+            switchTo().window(1);
+            $(".tgme_action_button").click();
+            Selenide.switchTo().alert().accept();
+        });
+    }
+
 
 }
